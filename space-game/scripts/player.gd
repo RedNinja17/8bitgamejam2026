@@ -13,13 +13,19 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	var dist = global_position.distance_to(target)
+	
 	if dist > 3.0:
 		var direction = global_position.direction_to(target)
 		speed = min(speed + MAX_SPEED * (delta * 2.0), MAX_SPEED)
+		
+		$AnimatedSprite2D.play("moving")
+			
 		var step = min(speed * delta, dist)
+		
 		velocity = direction * (step / delta)
 		rotation = lerp_angle(rotation, velocity.angle() + PI/2, TURN_SPEED * delta)
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
+		$AnimatedSprite2D.play("idle")
 		speed = 0.0
