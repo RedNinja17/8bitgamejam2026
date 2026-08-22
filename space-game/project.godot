@@ -14,6 +14,7 @@ config/name="space-game"
 run/main_scene="uid://dvlncedyip04s"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://c2x6hn4eqchwo"
 
 [audio]
 
@@ -25,8 +26,13 @@ GlobalMusic="*uid://b1tew1ntmexx8"
 
 [display]
 
+window/size/mode=2
+window/size/resizable=false
+window/size/borderless=true
+window/size/transparent=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 
 [input]
 
@@ -45,3 +51,5 @@ left_click={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true
+viewport/transparent_background=true

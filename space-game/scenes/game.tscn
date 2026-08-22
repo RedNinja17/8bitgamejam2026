@@ -1,16 +1,50 @@
 [gd_scene format=3 uid="uid://dvlncedyip04s"]
 
+[ext_resource type="Script" uid="uid://bgjur27fruysr" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://boroy78orm47v" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://c8x1fhq7gw8o5" path="res://scripts/player.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://mutkan8sqshn" path="res://assets/sprites/background.png" id="3_lnu2h"]
+[ext_resource type="Shader" uid="uid://com71x5sm4c16" path="res://assets/vfx/crt.gdshader" id="4_lbhrr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
+shader = ExtResource("4_lbhrr")
+shader_parameter/crt_brightness = 1.0
+shader_parameter/crt_ghost = 3.0
+shader_parameter/crt_grid = 0.4
+shader_parameter/crt_white_noise = 0.0
+shader_parameter/crt_curve = 0.05
 
 [node name="Game" type="Node2D" unique_id=445903223]
+script = ExtResource("1_iywne")
 
-[node name="Player" parent="." unique_id=1580156048 instance=ExtResource("1_uwrxv")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=752497784]
+material = SubResource("ShaderMaterial_lbhrr")
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=986467888]
+transparent_bg = true
+handle_input_locally = false
+use_hdr_2d = true
+size = Vector2i(1152, 648)
+size_2d_override = Vector2i(1152, 648)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=580560687]
+repeat_size = Vector2(1024, 1024)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=947517303]
+texture = ExtResource("3_lnu2h")
+
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1580156048 instance=ExtResource("1_uwrxv")]
 z_index = 5
 position = Vector2(0, -2)
 script = ExtResource("1_yqjtg")
 
+<<<<<<< HEAD
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1094012732]
 zoom = Vector2(3, 3)
 process_callback = 0
@@ -22,3 +56,9 @@ repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=947517303]
 texture = ExtResource("3_lnu2h")
+=======
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Player" unique_id=1094012732]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+>>>>>>> crt
