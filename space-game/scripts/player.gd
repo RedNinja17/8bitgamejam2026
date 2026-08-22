@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 125.0
+var max_speed = GameState.upgrades.get_value("speed")
 const ACEL_DUR = 1.5  # s
 const DECEL_RATE = 100.0
 const DECEL_EASE = 0.25
@@ -56,12 +56,12 @@ func _physics_process(delta: float) -> void:
 			accelerating = true
 			accel_time = min(accel_time + delta, ACEL_DUR)
 			var t := accel_time / ACEL_DUR
-			speed = MAX_SPEED * (t * t)
+			speed = max_speed * (t * t)
 		else:
-			var decel := DECEL_RATE * (DECEL_EASE + (1.0 - DECEL_EASE) * (speed / MAX_SPEED))
+			var decel = DECEL_RATE * (DECEL_EASE + (1.0 - DECEL_EASE) * (speed / max_speed))
 			speed = max(speed - decel * delta, 0.0)
 			sprite.play("idle")
-			accel_time = sqrt(speed / MAX_SPEED) * ACEL_DUR
+			accel_time = sqrt(speed / max_speed) * ACEL_DUR
 
 		var step: float = min(speed * delta, dist)
 		velocity = direction * (step / delta)
