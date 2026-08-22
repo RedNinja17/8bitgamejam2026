@@ -11,6 +11,7 @@ var target: Vector2 = Vector2.ZERO
 
 var inventory: Array = []
 
+@export var push_force: float = 50.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
@@ -67,6 +68,13 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * (step / delta)
 		rotation = lerp_angle(rotation, velocity.angle() + PI / 2, TURN_SPEED * delta)
 		move_and_slide()
+		
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var collider = collision.get_collider()
+			if collider is RigidBody2D:
+				var push_dir = -collision.get_normal()
+				collider.apply_central_impulse(push_dir * speed * push_force * delta)
 	else:
 		velocity = Vector2.ZERO
 		speed = 0.0
