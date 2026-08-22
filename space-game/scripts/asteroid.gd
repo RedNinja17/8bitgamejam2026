@@ -10,9 +10,14 @@ var collectable
 var player_in_range: bool = false
 var player_ref: Node2D = null
 
-@onready var net_detection_area: Area2D = $NetDetectionArea
-
 func _ready() -> void:
+	contact_monitor = true
+	max_contacts_reported = max(max_contacts_reported, 4)
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+	if not body_exited.is_connected(_on_body_exited):
+		body_exited.connect(_on_body_exited)
+
 	match type:
 		1:
 			sprite.play("1")
@@ -39,6 +44,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true
 		player_ref = body
+		collect_for_player(body)
 		
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -46,17 +52,31 @@ func _on_body_exited(body: Node2D) -> void:
 		player_ref = null
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player_in_range and event.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+	if player_in_range and event.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		deploy_net()
 
 func deploy_net() -> void:
 	print("Net deployed")
-	if(is_instance_valid(player_ref)):
-		player_ref.get_node("AnimatedSprite2D").play("deploy_net")
-		var reward = collect()
-		player_ref.get_node("AnimatedSprite2D")._add_inventory(reward)
-		
-	$NetAnimation.play("netted")
+	if is_instance_valid(player_ref):
+		collect_for_player(player_ref)
+
+func collect_for_player(player: Node2D) -> void:
+	if not collectable or not is_instance_valid(player):
+		return
+
+	if player.has_node("AnimatedSprite2D"):
+		player.get_node("AnimatedSprite2D").play("deploy_net")
+
+	var reward = collect()
+	if reward == "":
+		return
+
+	if player.has_method("add_inventory"):
+		player.add_inventory(reward)
+
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+	queue_free()
 
 func collect() -> String:
 	var reward = ""

@@ -73,6 +73,9 @@ func _physics_process(delta: float) -> void:
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
 			var collider = collision.get_collider()
+			if collider != null and collider.has_method("collect_for_player"):
+				collider.collect_for_player(self)
+				continue
 			if collider is RigidBody2D:
 				var push_dir = -collision.get_normal()
 				collider.apply_central_impulse(push_dir * speed * push_force * delta)

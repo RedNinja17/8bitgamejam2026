@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cxmx8vk3m4bvv" path="res://scripts/status_menu.gd" id="7_gee14"]
 [ext_resource type="Script" uid="uid://cd4i686eiqwp2" path="res://scripts/hud.gd" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://b56gwwapgrq6s" path="res://scripts/shop_menu.gd" id="9_vtaks"]
+[ext_resource type="Texture2D" uid="uid://bthgijfy4apli" path="res://assets/sprites/planet.png" id="10_dinhu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 shader = ExtResource("4_lbhrr")
@@ -74,6 +75,13 @@ script = ExtResource("6_u5sy4")
 
 [node name="HUD" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1081647808]
 script = ExtResource("8_0tnpc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SubViewportContainer/SubViewport" unique_id=232663131]
+position = Vector2(50, 75)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/StaticBody2D" unique_id=395998483]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_dinhu")
 
 [node name="ShopMenu" type="CanvasLayer" parent="SubViewportContainer" unique_id=73955093]
 script = ExtResource("9_vtaks")
