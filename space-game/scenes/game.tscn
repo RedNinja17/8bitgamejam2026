@@ -1,3 +1,15 @@
 [gd_scene format=3 uid="uid://dvlncedyip04s"]
 
+[ext_resource type="PackedScene" uid="uid://boroy78orm47v" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://c8x1fhq7gw8o5" path="res://scripts/player.gd" id="1_yqjtg"]
+
 [node name="Game" type="Node2D" unique_id=445903223]
+
+[node name="Player" parent="." unique_id=1580156048 instance=ExtResource("1_uwrxv")]
+position = Vector2(0, -2)
+script = ExtResource("1_yqjtg")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1094012732]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
