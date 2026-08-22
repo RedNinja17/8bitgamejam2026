@@ -63,7 +63,7 @@ func _draw() -> void:
 	draw_string(font, Vector2(x, y), "SHIP STATUS", HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Color.WHITE)
 	y += 40
 
-	var stats := ["MONEY: 999", "BOUNTY: 250", "HEALTH: 80 / 100", "FUEL: 64%", "WEIGHT: 42 kg"]
+	var stats := ["MONEY: %.0f" % GameState.money,"BOUNTY: %.0f" % GameState.bounty,"HEALTH: 80 / 100","FUEL: 64%","WEIGHT: 42 kg",]
 	for line in stats:
 		draw_string(font, Vector2(x, y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Color.WHITE)
 		y += 32

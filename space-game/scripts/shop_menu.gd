@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 var player_ref: Node2D = null
-var market: Market = null
 
 @onready var item_container: VBoxContainer = $PanelContainer/VBoxContainer/ScrollContainer/ItemListContainer
 @onready var title_label: Label = $PanelContainer/VBoxContainer/Title
@@ -45,15 +44,10 @@ func _refresh_list() -> void:
 		item_container.add_child(row)
 
 func _price_of(item: CargoItem) -> float:
-	if market != null:
-		return item.sell_value(market)
-	return item.base_value
+	return item.sell_value(GameState.market)
 
 func _on_sell(entry: String, price: float) -> void:
 	player_ref.remove_from_inventory(entry)
-
-	#player_ref.add_money(price)
-	#player_ref.add_bounty(price)
+	GameState.sell(price)
 	print("SOLD ", entry, " for ₴", price)
-
 	_refresh_list()
