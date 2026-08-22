@@ -44,21 +44,9 @@ z_index = 5
 position = Vector2(0, -2)
 script = ExtResource("1_yqjtg")
 
-<<<<<<< HEAD
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1094012732]
+[node name="Player#Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Player" unique_id=1094012732]
+visible = false
+position = Vector2(0, 2)
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=580560687]
-repeat_size = Vector2(1024, 1024)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=947517303]
-texture = ExtResource("3_lnu2h")
-=======
-[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Player" unique_id=1094012732]
-zoom = Vector2(3, 3)
-process_callback = 0
-position_smoothing_enabled = true
->>>>>>> crt
