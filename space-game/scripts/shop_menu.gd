@@ -25,6 +25,8 @@ func _input(event: InputEvent) -> void:
 			print("granted money. total: ₴", GameState.money)
 			if visible:
 				_refresh_list()
+		elif event.keycode == KEY_R:
+			_refuel()
 		elif visible:
 			var ids := ["speed", "thrust", "laser_damage", "laser_focus"]
 			var idx := -1
@@ -44,6 +46,20 @@ func open_shop_debug() -> void:
 		setup_shop(player_ref)
 	else:
 		print("DEBUG ERROR: Pressed G, but no node was found in group 'player'!")
+		
+func _refuel() -> void:
+	const REFUEL_COST := 1000.0
+	if GameState.fuel.fraction() >= 1.0:
+		print("R: tank already full")
+		return
+	if GameState.money < REFUEL_COST:
+		print("R: not enough money to refuel (need ₴", REFUEL_COST, ")")
+		return
+	GameState.money -= REFUEL_COST
+	GameState.fuel.refuel_full()
+	print("R: refueled for ₴", REFUEL_COST, ". money now ₴", GameState.money)
+	if visible:
+		_refresh_list()
 
 func setup_shop(player: Node2D) -> void:
 	player_ref = player
