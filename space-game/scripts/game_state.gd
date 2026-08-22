@@ -7,6 +7,7 @@ var market: Market = Market.new()
 var fuel := FuelTank.new()
 var cargo := CargoHold.new()
 var player_pos: Vector2 = Vector2.ZERO
+var upgrades: UpgradeManager = UpgradeManager.new()
 
 const MARKET_TICK_INTERVAL := 2.0
 
@@ -26,3 +27,13 @@ func add_bounty(amount: float) -> void:
 func sell(value: float) -> void:
 	money += value
 	bounty += value
+	
+func try_buy_upgrade(id: String) -> bool:
+	var cost = GameState.upgrades.next_cost(id)
+	if cost < 0:
+		return false                      # already maxed
+	if money < cost:
+		return false                      # can't afford
+	money -= cost
+	GameState.upgrades.purchase(id)
+	return true

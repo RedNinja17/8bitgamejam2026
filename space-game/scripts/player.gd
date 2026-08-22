@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 125.0
+var max_speed = GameState.upgrades.get_value("speed")
 const ACEL_DUR = 1.5  # s
 const DECEL_RATE = 100.0
 const DECEL_EASE = 0.25
@@ -11,6 +11,7 @@ var target: Vector2 = Vector2.ZERO
 
 var inventory: Array = []
 
+@export var push_force: float = 50.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
@@ -56,17 +57,24 @@ func _physics_process(delta: float) -> void:
 			accelerating = true
 			accel_time = min(accel_time + delta, ACEL_DUR)
 			var t := accel_time / ACEL_DUR
-			speed = MAX_SPEED * (t * t)
+			speed = max_speed * (t * t)
 		else:
-			var decel := DECEL_RATE * (DECEL_EASE + (1.0 - DECEL_EASE) * (speed / MAX_SPEED))
+			var decel = DECEL_RATE * (DECEL_EASE + (1.0 - DECEL_EASE) * (speed / max_speed))
 			speed = max(speed - decel * delta, 0.0)
 			sprite.play("idle")
-			accel_time = sqrt(speed / MAX_SPEED) * ACEL_DUR
+			accel_time = sqrt(speed / max_speed) * ACEL_DUR
 
 		var step: float = min(speed * delta, dist)
 		velocity = direction * (step / delta)
 		rotation = lerp_angle(rotation, velocity.angle() + PI / 2, TURN_SPEED * delta)
 		move_and_slide()
+		
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var collider = collision.get_collider()
+			if collider is RigidBody2D:
+				var push_dir = -collision.get_normal()
+				collider.apply_central_impulse(push_dir * speed * push_force * delta)
 	else:
 		velocity = Vector2.ZERO
 		speed = 0.0
