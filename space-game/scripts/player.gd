@@ -3,7 +3,7 @@ const MAX_SPEED = 400.0
 const ACEL_DUR = 3.0 #s
 const DECEL_RATE = 300.0
 var accel_time = 0;
-const TURN_SPEED = 2.0
+const TURN_SPEED = 20.0
 var speed = 0.0
 var target = Vector2.ZERO
 
