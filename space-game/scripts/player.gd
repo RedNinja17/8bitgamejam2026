@@ -20,6 +20,9 @@ func add_inventory(reward: String):
 	inventory.append(reward)
 	print("Asteriod collected")
 	
+func remove_from_inventory(entry: String) -> void:
+	inventory.erase(entry)
+	
 func return_inventory() -> Array:
 	return inventory
 	
