@@ -7,6 +7,8 @@
 [ext_resource type="Shader" uid="uid://com71x5sm4c16" path="res://assets/vfx/crt.gdshader" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://bmc3cvxyypggw" path="res://assets/sprites/tv.png" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://bjpll2g41xqo7" path="res://scripts/software_cursor.gd" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://b56gwwapgrq6s" path="res://scenes/shop_menu.gd" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://bmgina8sayt1d" path="res://assets/sprites/shop.png" id="9_0tnpc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
 shader = ExtResource("4_lbhrr")
@@ -49,7 +51,6 @@ position = Vector2(0, -2)
 script = ExtResource("1_yqjtg")
 
 [node name="Player#Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Player" unique_id=1094012732]
-visible = false
 position = Vector2(0, 2)
 zoom = Vector2(3, 3)
 process_callback = 0
@@ -62,3 +63,32 @@ script = ExtResource("6_u5sy4")
 texture_filter = 6
 texture = ExtResource("6_p57ef")
 centered = false
+
+[node name="Shop Menu" type="CanvasLayer" parent="." unique_id=53100488]
+script = ExtResource("8_gee14")
+
+[node name="PanelContainer" type="PanelContainer" parent="Shop Menu" unique_id=1285529631]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop Menu/PanelContainer" unique_id=2139618770]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Shop Menu/PanelContainer/VBoxContainer" unique_id=439895847]
+layout_mode = 2
+text = "Shop Menu
+"
+
+[node name="Sell" type="Button" parent="Shop Menu/PanelContainer/VBoxContainer" unique_id=1490233490]
+layout_mode = 2
+text = "Analyze Asteriods"
+
+[node name="Close" type="Button" parent="Shop Menu/PanelContainer/VBoxContainer" unique_id=601184665]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop Menu/PanelContainer/VBoxContainer" unique_id=167352298]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop Menu" unique_id=904715625]
+position = Vector2(1, 0)
+texture = ExtResource("9_0tnpc")

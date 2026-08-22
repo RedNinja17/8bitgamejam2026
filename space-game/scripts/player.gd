@@ -1,4 +1,5 @@
 extends CharacterBody2D
+
 const MAX_SPEED = 125.0
 const ACEL_DUR = 1.5  # s
 const DECEL_RATE = 100.0
@@ -19,11 +20,12 @@ func add_inventory(reward: String):
 	inventory.append(reward)
 	print("Asteriod collected")
 	
+func return_inventory() -> Array:
+	return inventory
+	
 func rotate_to(asteriod: RigidBody2D):
 	var target_pos = asteriod.get_global_position()
 	var _angle = lerp_angle(rotation, atan2(target_pos.y, target_pos.x) + PI/2, 0.1)
-	
-
 
 func _physics_process(delta: float) -> void:
 	var holding := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
