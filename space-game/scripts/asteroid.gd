@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision: CollisionShape2D = $CollisionShape2D
+
 # 1 = trash, 2 = close, 3 = medium, 4 = far
 var type
 var collectable
@@ -8,8 +11,23 @@ var player_in_range: bool = false
 var player_ref: Node2D = null
 
 func _ready() -> void:
-	net_detection_area.body_entered.connect(_on_body_entered)
-	net_detection_area.body_exited.connect(_on_body_exited)
+	match type:
+		1:
+			sprite.play("1")
+			sprite.scale = Vector2(0.1, 0.1)
+			collision.scale = Vector2(0.1, 0.1)
+		2:
+			sprite.play("2")
+			sprite.scale = Vector2(1, 1)
+			collision.scale = Vector2(0.05, 0.05)
+		3:
+			sprite.play("3")
+			sprite.scale = Vector2(1, 1)
+			collision.scale = Vector2(0.2, 0.2)
+		4:
+			sprite.play("4")
+			sprite.scale = Vector2(1, 1)
+			collision.scale = Vector2(0.15, 0.15)
 
 func setup(place: int) -> void:
 	type = place
