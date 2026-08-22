@@ -71,6 +71,26 @@ script = ExtResource("6_u5sy4")
 [node name="HUD" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1081647808]
 script = ExtResource("8_0tnpc")
 
+[node name="ShopMenu" type="CanvasLayer" parent="SubViewportContainer" unique_id=73955093]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/ShopMenu" unique_id=1217967230]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=281036564]
+layout_mode = 2
+text = "Shop Menu
+"
+
+[node name="Close" type="Button" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=1426755996]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=1145982994]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="SubViewportContainer/ShopMenu/VBoxContainer/ScrollContainer" unique_id=7087674]
+layout_mode = 2
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=520134413]
 texture_filter = 6
 texture = ExtResource("6_p57ef")

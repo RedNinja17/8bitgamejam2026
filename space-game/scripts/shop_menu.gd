@@ -2,17 +2,37 @@ extends CanvasLayer
 
 var player_ref: Node2D = null
 
-@onready var item_container: VBoxContainer = $PanelContainer/VBoxContainer/ScrollContainer/ItemListContainer
-@onready var title_label: Label = $PanelContainer/VBoxContainer/Title
-@onready var close_btn: Button = $PanelContainer/VBoxContainer/Close
+@onready var title_label: Label = $VBoxContainer/Title
+@onready var close_btn: Button = $VBoxContainer/Close
+@onready var item_container: Control = $VBoxContainer/ScrollContainer/ItemList
 
 func _ready() -> void:
-	# Hide the UI when the game starts
+	process_mode = PROCESS_MODE_ALWAYS
 	visible = false
 	
-	# Connect the close button once to hide instead of delete
 	if not close_btn.pressed.is_connected(_on_close_pressed):
 		close_btn.pressed.connect(_on_close_pressed)
+
+# Switched from _unhandled_input to _input so UI focus doesn't block 'G'
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_G:
+			if visible:
+				_on_close_pressed()
+			else:
+				open_shop_debug()
+
+func open_shop_debug() -> void:
+	print("--- DEBUG: G Key Pressed ---")
+	
+	if player_ref == null:
+		player_ref = get_tree().get_first_node_in_group("player")
+	
+	if player_ref != null:
+		print("DEBUG: Player found! Opening shop...")
+		setup_shop(player_ref)
+	else:
+		print("DEBUG ERROR: Pressed G, but no node was found in group 'player'!")
 
 func setup_shop(player: Node2D) -> void:
 	player_ref = player
@@ -22,30 +42,13 @@ func setup_shop(player: Node2D) -> void:
 func _on_close_pressed() -> void:
 	visible = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_G:
-			if visible:
-				_on_close_pressed()
-			else:
-				open_shop_debug()
-
-func open_shop_debug() -> void:
-	if player_ref == null:
-		player_ref = get_tree().get_first_node_in_group("player")
-	
-	if player_ref != null:
-		setup_shop(player_ref)
-	else:
-		print("Debug Error: No node found in group 'player'")
-
 func _refresh_list() -> void:
 	for child in item_container.get_children():
 		child.queue_free()
 
 	if player_ref == null or not player_ref.has_method("return_inventory"):
 		var empty := Label.new()
-		empty.text = "Player data missing."
+		empty.text = "Player reference missing or invalid."
 		item_container.add_child(empty)
 		return
 
