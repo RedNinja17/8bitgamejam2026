@@ -16,6 +16,8 @@ func _physics_process(delta: float) -> void:
 	if global_position.distance_to(target) > 3.0:
 		var direction = global_position.direction_to(target)
 		velocity = direction * SPEED
+		
+		rotation = lerp_angle(rotation, atan2(-velocity.y, -velocity.x), delta)
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
