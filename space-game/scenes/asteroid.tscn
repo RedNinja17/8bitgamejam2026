@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c2x6hn4eqchwo"]
+
+[ext_resource type="Script" uid="uid://fib3crnhxb0f" path="res://scripts/asteroid.gd" id="1_6mo6b"]
+[ext_resource type="Texture2D" uid="uid://ca63jwaitpj66" path="res://assets/sprites/asteroid.png" id="1_akfqu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3chas"]
+radius = 4.1017337
+height = 20.36604
+
+[node name="Asteroid" type="RigidBody2D" unique_id=997646411]
+gravity_scale = 0.0
+linear_damp = 0.8
+angular_damp = 0.8
+script = ExtResource("1_6mo6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961111920]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_akfqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=943173817]
+position = Vector2(0.5, 0.5)
+rotation = 1.4276793
+shape = SubResource("CapsuleShape2D_3chas")

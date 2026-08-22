@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b1tew1ntmexx8"]
+
+[ext_resource type="AudioStream" uid="uid://dpd2187n05mnj" path="res://assets/music/idle_title music option 2.mp3" id="1_p76w3"]
+
+[node name="GlobalMusic" type="AudioStreamPlayer2D" unique_id=1826503044]
+stream = ExtResource("1_p76w3")
+autoplay = true
+panning_strength = 0.0
+bus = &"Music"
