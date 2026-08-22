@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://boroy78orm47v"]
 
 [ext_resource type="Texture2D" uid="uid://mvidpmnk3xq3" path="res://assets/sprites/small ship.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://bq3ukj5apatwb" path="res://assets/sprites/small ship with net.png" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dmcghq4qd8hco" path="res://assets/sprites/small ship with fire.png" id="2_g2els"]
 
 [sub_resource type="GDScript" id="GDScript_qhqgy"]
@@ -31,6 +32,26 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("1_qhqgy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("1_qhqgy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("1_qhqgy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("1_qhqgy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("1_qhqgy")
+region = Rect2(32, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(0, 0, 16, 16)
@@ -45,6 +66,26 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvrwu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
+}],
+"loop": 1,
+"name": &"deploy_net",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
@@ -74,9 +115,8 @@ script = SubResource("GDScript_qhqgy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1275950040]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rvrwu")
-animation = &"moving"
+animation = &"deploy_net"
 autoplay = "idle"
-frame_progress = 0.15415597
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186358219]
 position = Vector2(0, -1)

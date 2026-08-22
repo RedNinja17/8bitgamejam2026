@@ -1,17 +1,24 @@
 extends CharacterBody2D
 const MAX_SPEED = 125.0
 const ACEL_DUR = 1.5  # s
-const DECEL_RATE = 300.0
+const DECEL_RATE = 100.0
 const DECEL_EASE = 0.25
 const TURN_SPEED = 8.0
 var accel_time: float = 0.0
 var speed: float = 0.0
 var target: Vector2 = Vector2.ZERO
 
+var inventory: Array = []
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
 	target = global_position
+	
+func _add_inventory(reward: String):
+	inventory.append(reward)
+	print("Asteriod collected")
+
 
 func _physics_process(delta: float) -> void:
 	var holding := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
@@ -33,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			var decel := DECEL_RATE * (DECEL_EASE + (1.0 - DECEL_EASE) * (speed / MAX_SPEED))
 			speed = max(speed - decel * delta, 0.0)
+			sprite.play("idle")
 			accel_time = sqrt(speed / MAX_SPEED) * ACEL_DUR
 
 		var step: float = min(speed * delta, dist)
@@ -47,3 +55,4 @@ func _physics_process(delta: float) -> void:
 	var anim: StringName = "moving" if accelerating else "idle"
 	if sprite.animation != anim or not sprite.is_playing():
 		sprite.play(anim)
+		

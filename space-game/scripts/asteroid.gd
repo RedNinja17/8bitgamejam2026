@@ -7,6 +7,8 @@ var collectable
 var player_in_range: bool = false
 var player_ref: Node2D = null
 
+@onready var net_detection_area: Area2D = $NetDetectionArea
+
 func _ready() -> void:
 	net_detection_area.body_entered.connect(_on_body_entered)
 	net_detection_area.body_exited.connect(_on_body_exited)
@@ -31,6 +33,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func deploy_net() -> void:
 	print("Net deployed")
+	if(is_instance_valid(player_ref)):
+		player_ref.get_node("AnimatedSprite2D").play("deploy_net")
+		var reward = collect()
+		player_ref.get_node("AnimatedSprite2D")._add_inventory(reward)
+		
 	$NetAnimation.play("netted")
 
 func collect() -> String:
