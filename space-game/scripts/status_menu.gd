@@ -48,7 +48,7 @@ func _draw() -> void:
 		return
 
 	var p := _panel_pos()
-	var font := ThemeDB.fallback_font
+	var font := preload("res://assets/fonts/PixelifySans-VariableFont_wght.ttf")
 
 	# dim backdrop over the whole screen
 	draw_rect(Rect2(-2000, -2000, 6000, 6000), Color(0, 0, 0, 0.6))
