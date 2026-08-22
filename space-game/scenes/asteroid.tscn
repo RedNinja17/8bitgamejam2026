@@ -2,10 +2,37 @@
 
 [ext_resource type="Script" uid="uid://fib3crnhxb0f" path="res://scripts/asteroid.gd" id="1_6mo6b"]
 [ext_resource type="Texture2D" uid="uid://ca63jwaitpj66" path="res://assets/sprites/asteroid.png" id="1_akfqu"]
+[ext_resource type="Texture2D" uid="uid://cxoloslbekpl3" path="res://assets/sprites/asteroid with net.png" id="3_t4se3"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3chas"]
-radius = 4.1017337
-height = 20.36604
+[sub_resource type="CircleShape2D" id="CircleShape2D_x1w1a"]
+radius = 82.67
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnq5b"]
+atlas = ExtResource("1_akfqu")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwrvu"]
+atlas = ExtResource("3_t4se3")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lc1ba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnq5b")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwrvu")
+}],
+"loop": 1,
+"name": &"netted",
+"speed": 5.0
+}]
 
 [node name="Asteroid" type="RigidBody2D" unique_id=997646411]
 gravity_scale = 0.0
@@ -13,11 +40,10 @@ linear_damp = 0.8
 angular_damp = 0.8
 script = ExtResource("1_6mo6b")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961111920]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_akfqu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=943173817]
 position = Vector2(0.5, 0.5)
 rotation = 1.4276793
-shape = SubResource("CapsuleShape2D_3chas")
+shape = SubResource("CircleShape2D_x1w1a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1057991713]
+sprite_frames = SubResource("SpriteFrames_lc1ba")

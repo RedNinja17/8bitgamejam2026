@@ -4,13 +4,35 @@ extends RigidBody2D
 var type
 var collectable
 
+var player_in_range: bool = false
+var player_ref: Node2D = null
+
 func _ready() -> void:
-	pass
+	net_detection_area.body_entered.connect(_on_body_entered)
+	net_detection_area.body_exited.connect(_on_body_exited)
 
 func setup(place: int) -> void:
 	type = place
 	collectable = true
 	
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_range = true
+		player_ref = body
+		
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_range = false
+		player_ref = null
+
+func _unhandled_input(event: InputEvent) -> void:
+	if player_in_range and event.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+		deploy_net()
+
+func deploy_net() -> void:
+	print("Net deployed")
+	$NetAnimation.play("netted")
+
 func collect() -> String:
 	var reward = ""
 	if collectable == true:

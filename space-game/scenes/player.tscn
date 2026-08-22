@@ -80,3 +80,5 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186358219]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_o33cc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2132399667]
