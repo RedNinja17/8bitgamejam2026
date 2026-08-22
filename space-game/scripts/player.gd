@@ -40,6 +40,7 @@ func rotate_to(asteriod: RigidBody2D):
 	var _angle = lerp_angle(rotation, atan2(target_pos.y, target_pos.x) + PI/2, 0.1)
 
 func _physics_process(delta: float) -> void:
+	GameState.player_pos = global_position
 	var holding := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if holding:
 		target = get_global_mouse_position()
