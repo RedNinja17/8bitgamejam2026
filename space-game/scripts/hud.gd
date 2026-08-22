@@ -18,14 +18,16 @@ func setup(player: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	label.text = _build_text()
-
+	
 func _build_text() -> String:
-	return "MONEY  ₴%.0f\nBOUNTY ₴%.0f\nFUEL   %s %d%%\nWEIGHT %.0f kg" % [
+	return "MONEY  ₴%.0f\nBOUNTY ₴%.0f\nFUEL   %s %d%%\nWEIGHT %.0f kg\nX:%.0f  Y:%.0f" % [
 		GameState.money,
 		GameState.bounty,
 		_bar(GameState.fuel.fraction(), 10),
 		int(GameState.fuel.fraction() * 100),
 		GameState.cargo.current_weight(),
+		GameState.player_pos.x,
+		GameState.player_pos.y,
 	]
 
 func _bar(frac: float, segments: int) -> String:
