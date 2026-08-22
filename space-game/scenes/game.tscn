@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmc3cvxyypggw" path="res://assets/sprites/tv.png" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://bjpll2g41xqo7" path="res://scripts/software_cursor.gd" id="6_u5sy4"]
 [ext_resource type="Script" uid="uid://cxmx8vk3m4bvv" path="res://scripts/status_menu.gd" id="7_gee14"]
+[ext_resource type="Script" uid="uid://cd4i686eiqwp2" path="res://scripts/hud.gd" id="8_0tnpc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 shader = ExtResource("4_lbhrr")
@@ -123,10 +124,8 @@ script = ExtResource("7_gee14")
 modulate = Color(1.540184e-06, 0.83245796, 0.8327785, 1)
 script = ExtResource("6_u5sy4")
 
-[node name="ShopMenu" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=413763576]
-script = SubResource("GDScript_gee14")
-
-[node name="Node2D" type="Node2D" parent="SubViewportContainer/SubViewport/ShopMenu" unique_id=1040775908]
+[node name="HUD" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1081647808]
+script = ExtResource("8_0tnpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=520134413]
 texture_filter = 6

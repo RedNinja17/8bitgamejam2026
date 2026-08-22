@@ -20,6 +20,15 @@ func add_inventory(reward: String):
 	inventory.append(reward)
 	print("Asteriod collected")
 	
+var fuel = GameState.fuel
+var cargo = GameState.cargo
+
+func get_fuel_fraction() -> float:
+	return fuel.fraction()
+
+func get_cargo_weight() -> float:
+	return cargo.current_weight()
+	
 func remove_from_inventory(entry: String) -> void:
 	inventory.erase(entry)
 	
