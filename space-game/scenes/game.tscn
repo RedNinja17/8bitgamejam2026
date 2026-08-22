@@ -7,8 +7,9 @@
 [ext_resource type="Shader" uid="uid://com71x5sm4c16" path="res://assets/vfx/crt.gdshader" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://bmc3cvxyypggw" path="res://assets/sprites/tv.png" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://bjpll2g41xqo7" path="res://scripts/software_cursor.gd" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://cxmx8vk3m4bvv" path="res://scripts/status_menu.gd" id="7_gee14"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 shader = ExtResource("4_lbhrr")
 shader_parameter/crt_brightness = 1.0
 shader_parameter/crt_ghost = 3.0
@@ -20,7 +21,7 @@ shader_parameter/crt_curve = 0.05
 script = ExtResource("1_iywne")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=752497784]
-material = SubResource("ShaderMaterial_lbhrr")
+material = SubResource("ShaderMaterial_gee14")
 offset_left = 50.0
 offset_top = 75.0
 offset_right = 1202.0
@@ -55,7 +56,15 @@ zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="SoftwareCursor" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1401235482]
+[node name="MenuLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=2058086383]
+
+[node name="StatusMenu" type="Node2D" parent="SubViewportContainer/SubViewport/MenuLayer" unique_id=121013892]
+script = ExtResource("7_gee14")
+
+[node name="CursorLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1415846118]
+
+[node name="SoftwareCursor" type="Node2D" parent="SubViewportContainer/SubViewport/CursorLayer" unique_id=1401235482]
+modulate = Color(1.540184e-06, 0.83245796, 0.8327785, 1)
 script = ExtResource("6_u5sy4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=520134413]
