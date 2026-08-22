@@ -15,9 +15,14 @@ var inventory: Array = []
 func _ready() -> void:
 	target = global_position
 	
-func _add_inventory(reward: String):
+func add_inventory(reward: String):
 	inventory.append(reward)
 	print("Asteriod collected")
+	
+func rotate_to(asteriod: RigidBody2D):
+	var target_pos = asteriod.get_global_position()
+	var _angle = lerp_angle(rotation, atan2(target_pos.y, target_pos.x) + PI/2, 0.1)
+	
 
 
 func _physics_process(delta: float) -> void:
