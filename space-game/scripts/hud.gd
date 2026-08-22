@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 var player_ref: Node2D = null
-
 @onready var label: Label = $Readout
 
 func _ready() -> void:
@@ -18,7 +17,7 @@ func setup(player: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	label.text = _build_text()
-	
+
 func _build_text() -> String:
 	return "MONEY  ₴%.0f\nBOUNTY ₴%.0f\nFUEL   %s %d%%\nWEIGHT %.0f kg\nX:%.0f  Y:%.0f" % [
 		GameState.money,

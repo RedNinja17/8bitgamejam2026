@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bjpll2g41xqo7" path="res://scripts/software_cursor.gd" id="6_u5sy4"]
 [ext_resource type="Script" uid="uid://cxmx8vk3m4bvv" path="res://scripts/status_menu.gd" id="7_gee14"]
 [ext_resource type="Script" uid="uid://cd4i686eiqwp2" path="res://scripts/hud.gd" id="8_0tnpc"]
+[ext_resource type="Script" uid="uid://b56gwwapgrq6s" path="res://scripts/shop_menu.gd" id="9_vtaks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 shader = ExtResource("4_lbhrr")
@@ -52,7 +53,6 @@ texture = ExtResource("3_lnu2h")
 z_index = 5
 position = Vector2(0, -2)
 script = ExtResource("1_yqjtg")
-push_force = 50.0
 
 [node name="Player#Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Player" unique_id=1094012732]
 visible = false
@@ -76,10 +76,13 @@ script = ExtResource("6_u5sy4")
 script = ExtResource("8_0tnpc")
 
 [node name="ShopMenu" type="CanvasLayer" parent="SubViewportContainer" unique_id=73955093]
+script = ExtResource("9_vtaks")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/ShopMenu" unique_id=1217967230]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 578.0
+offset_top = 470.0
+offset_right = 666.0
+offset_bottom = 535.0
 
 [node name="Title" type="Label" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=281036564]
 layout_mode = 2

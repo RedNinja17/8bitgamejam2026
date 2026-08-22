@@ -16,6 +16,7 @@ var inventory: Array = []
 
 func _ready() -> void:
 	target = global_position
+	add_to_group("player")
 	
 func add_inventory(reward: String):
 	inventory.append(reward)
