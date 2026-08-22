@@ -8,7 +8,7 @@ func _ready() -> void:
 	target = global_position
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click") and speed == 0:
 		target = get_global_mouse_position()
 
 func _physics_process(delta: float) -> void:
