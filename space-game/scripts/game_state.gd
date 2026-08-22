@@ -9,6 +9,7 @@ var upgrades: UpgradeManager = UpgradeManager.new()
 var player_pos: Vector2 = Vector2.ZERO
 
 const MARKET_TICK_INTERVAL := 2.0
+const FUEL_BURN_RATE := 0.02
 
 func _ready() -> void:
 	var timer := Timer.new()
