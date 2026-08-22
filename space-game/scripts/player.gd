@@ -19,12 +19,14 @@ func _physics_process(delta: float) -> void:
 		target = get_global_mouse_position()
 
 	var dist := global_position.distance_to(target)
+	var accelerating := false
 
 	if dist > 3.0:
 		var direction := global_position.direction_to(target)
 		var braking_dist := (speed * speed) / (2.0 * DECEL_RATE)
 
 		if dist > braking_dist:
+			accelerating = true
 			accel_time = min(accel_time + delta, ACEL_DUR)
 			var t := accel_time / ACEL_DUR
 			speed = MAX_SPEED * (t * t)
@@ -42,6 +44,6 @@ func _physics_process(delta: float) -> void:
 		speed = 0.0
 		accel_time = 0.0
 
-	var anim := "moving" if holding else "idle"
+	var anim: StringName = "moving" if accelerating else "idle"
 	if sprite.animation != anim or not sprite.is_playing():
 		sprite.play(anim)
