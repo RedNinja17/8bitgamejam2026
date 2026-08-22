@@ -24,4 +24,4 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if player_in_range and event.is_button_pressed(E):
-	
+		
