@@ -23,7 +23,6 @@ buses/default_bus_layout="uid://k3d4iw3e8iov"
 [autoload]
 
 GlobalMusic="*uid://b1tew1ntmexx8"
-Cursor="*uid://dy8rvlhuvr4tc"
 GameState="*uid://ceaioy5sbmevk"
 
 [display]

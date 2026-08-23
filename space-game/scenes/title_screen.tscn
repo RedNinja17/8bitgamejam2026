@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://mutkan8sqshn" path="res://assets/sprites/background.png" id="3_mgrm8"]
 [ext_resource type="Texture2D" uid="uid://bmc3cvxyypggw" path="res://assets/sprites/tv.png" id="3_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://dmcghq4qd8hco" path="res://assets/sprites/small ship with fire.png" id="4_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://ccinh8rd6jym6" path="res://assets/sprites/leftbutton.png" id="7_3yumr"]
+[ext_resource type="Script" uid="uid://dfcxelme4mgdy" path="res://scenes/settings.gd" id="7_tklts"]
+[ext_resource type="Texture2D" uid="uid://bc2xgy5lyrgye" path="res://assets/sprites/rightbutton.png" id="8_cs5ya"]
+[ext_resource type="Texture2D" uid="uid://d20txjlk7mloc" path="res://assets/sprites/powerbutton.png" id="9_mykxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sa3yf"]
 shader = ExtResource("1_fgkus")
@@ -36,6 +40,47 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs5ya"]
+bg_color = Color(0.6016781, 0.8697129, 0.5718288, 0.46666667)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.81960785)
+shadow_size = 5
+shadow_offset = Vector2(-5, -5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yumr"]
+bg_color = Color(0.6016781, 0.8697129, 0.5718288, 0.46666667)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.81960785)
+shadow_size = 5
+shadow_offset = Vector2(-5, -5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mykxm"]
+bg_color = Color(0.9174497, 0.74825263, 0.6545724, 0.46666667)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.81960785)
+shadow_size = 5
+shadow_offset = Vector2(-5, -5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tklts"]
+bg_color = Color(0.9174497, 0.74825263, 0.6545724, 0.46666667)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.81960785)
+shadow_size = 5
+shadow_offset = Vector2(-5, -5)
 
 [node name="TitleScreen" type="Node2D" unique_id=1453135091]
 
@@ -81,3 +126,43 @@ frame_progress = 0.73852605
 texture_filter = 6
 texture = ExtResource("3_s4lrb")
 centered = false
+
+[node name="TVSettingsUI" type="CanvasLayer" parent="." unique_id=300933046]
+script = ExtResource("7_tklts")
+
+[node name="Volume" type="VSlider" parent="TVSettingsUI" unique_id=515127026]
+offset_left = 1285.0
+offset_top = 575.0
+offset_right = 1320.0
+offset_bottom = 715.0
+theme_override_icons/grabber = ExtResource("7_3yumr")
+theme_override_icons/grabber_highlight = ExtResource("7_3yumr")
+theme_override_icons/grabber_disabled = ExtResource("7_3yumr")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_cs5ya")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_3yumr")
+step = 10.0
+value = 50.0
+rounded = true
+
+[node name="Brightness" type="VSlider" parent="TVSettingsUI" unique_id=1681903302]
+offset_left = 1340.0
+offset_top = 575.0
+offset_right = 1375.0
+offset_bottom = 715.0
+theme_override_icons/grabber = ExtResource("8_cs5ya")
+theme_override_icons/grabber_highlight = ExtResource("8_cs5ya")
+theme_override_icons/grabber_disabled = ExtResource("8_cs5ya")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_mykxm")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_tklts")
+step = 10.0
+value = 50.0
+rounded = true
+
+[node name="Power" type="TextureButton" parent="TVSettingsUI" unique_id=1833918670]
+z_index = 5
+texture_filter = 6
+offset_left = 1316.0
+offset_top = 837.0
+offset_right = 1341.0
+offset_bottom = 862.0
+texture_normal = ExtResource("9_mykxm")
