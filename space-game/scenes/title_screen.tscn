@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dkgypuhyf6ybx"]
 
 [ext_resource type="Shader" uid="uid://com71x5sm4c16" path="res://assets/vfx/crt.gdshader" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://olcp6h2xxs27" path="res://scripts/main_menu_background.gd" id="2_e54dn"]
 [ext_resource type="Script" uid="uid://c1ap232ivghco" path="res://title_screen.gd" id="2_sa3yf"]
+[ext_resource type="Texture2D" uid="uid://mutkan8sqshn" path="res://assets/sprites/background.png" id="3_mgrm8"]
 [ext_resource type="Texture2D" uid="uid://bmc3cvxyypggw" path="res://assets/sprites/tv.png" id="3_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://dmcghq4qd8hco" path="res://assets/sprites/small ship with fire.png" id="4_dc4i4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sa3yf"]
 shader = ExtResource("1_fgkus")
@@ -11,6 +14,28 @@ shader_parameter/crt_ghost = 3.0
 shader_parameter/crt_grid = 0.4
 shader_parameter/crt_white_noise = 0.0
 shader_parameter/crt_curve = 0.05
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
+atlas = ExtResource("4_dc4i4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
+atlas = ExtResource("4_dc4i4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pm0ju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e54dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yumr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="TitleScreen" type="Node2D" unique_id=1453135091]
 
@@ -30,9 +55,27 @@ size = Vector2i(1152, 850)
 size_2d_override = Vector2i(1152, 850)
 size_2d_override_stretch = true
 render_target_update_mode = 4
+script = ExtResource("2_e54dn")
 
 [node name="TitleContent" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=90430336]
+z_index = 1
 script = ExtResource("2_sa3yf")
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=292067054]
+scroll_offset = Vector2(-45, -30)
+repeat_size = Vector2(1024, 1024)
+autoscroll = Vector2(670, 436)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1739899250]
+texture = ExtResource("3_mgrm8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport" unique_id=1370624842]
+position = Vector2(575, 400)
+rotation = -0.9948377
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pm0ju")
+frame_progress = 0.73852605
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1799035375]
 texture_filter = 6

@@ -21,8 +21,6 @@ func _draw() -> void:
 	var font := ThemeDB.fallback_font
 	var vp := get_viewport_rect().size   # this is now the SubViewport size
 
-	draw_rect(Rect2(Vector2.ZERO, vp), Color(0, 0, 0))
-
 	var title := "SPACE JANITOR"
 	var ts := 64
 	var tw := font.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, ts).x
