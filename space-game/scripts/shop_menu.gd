@@ -20,9 +20,10 @@ func _input(event: InputEvent) -> void:
 				open_shop_debug()
 		elif event.keycode == KEY_H:
 			_sell_everything()
+		#DEBUG - DELETE ME 
 		elif event.keycode == KEY_M:
 			GameState.add_money(2000)
-			print("granted money. total: ₴", GameState.money)
+			print("DEBUG: Granted money. Total: ₴", GameState.money)
 			if visible:
 				_refresh_list()
 		elif event.keycode == KEY_R:
@@ -38,7 +39,7 @@ func _input(event: InputEvent) -> void:
 				_buy_upgrade(ids[idx])
 
 func open_shop_debug() -> void:
-	print("--- DEBUG: G Key Pressed ---")
+	print("DEBUG: G Key Pressed")
 	if player_ref == null:
 		player_ref = get_tree().get_first_node_in_group("player")
 	if player_ref != null:
@@ -50,10 +51,10 @@ func open_shop_debug() -> void:
 func _refuel() -> void:
 	const REFUEL_COST := 1000.0
 	if GameState.fuel.fraction() >= 1.0:
-		print("R: tank already full")
+		print("R: Tank already full")
 		return
 	if GameState.money < REFUEL_COST:
-		print("R: not enough money to refuel (need ₴", REFUEL_COST, ")")
+		print("R: Not enough money to refuel (need ₴", REFUEL_COST, ")")
 		return
 	GameState.money -= REFUEL_COST
 	GameState.fuel.refuel_full()
@@ -82,7 +83,8 @@ func _refresh_list() -> void:
 		var inventory: Array = player_ref.return_inventory()
 		if inventory.is_empty():
 			var empty := Label.new()
-			empty.text = "Cargo hold empty. [H] sell all"
+			print("DEBUG: Cargo hold empty.")
+			empty.text = "[H] Sell all"
 			item_container.add_child(empty)
 		else:
 			for entry in inventory:

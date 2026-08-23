@@ -21,6 +21,9 @@ shader_parameter/crt_grid = 0.4
 shader_parameter/crt_white_noise = 0.0
 shader_parameter/crt_curve = 0.05
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_et6nl"]
+radius = 125.035995
+
 [node name="Game" type="Node2D" unique_id=445903223]
 script = ExtResource("1_iywne")
 
@@ -76,37 +79,50 @@ script = ExtResource("6_u5sy4")
 [node name="HUD" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1081647808]
 script = ExtResource("8_0tnpc")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="SubViewportContainer/SubViewport" unique_id=232663131]
+[node name="Readout" type="Label" parent="SubViewportContainer/SubViewport/HUD" unique_id=771389754]
+offset_right = 65.0
+offset_bottom = 49.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(90, 70)
+text = "Readout
+"
+metadata/_edit_lock_ = true
+
+[node name="Planet" type="StaticBody2D" parent="SubViewportContainer/SubViewport" unique_id=232663131]
 position = Vector2(50, 75)
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/StaticBody2D" unique_id=395998483]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Planet" unique_id=395998483]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_dinhu")
 
-[node name="ShopMenu" type="CanvasLayer" parent="SubViewportContainer" unique_id=73955093]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/Planet" unique_id=276776758]
+shape = SubResource("CircleShape2D_et6nl")
+
+[node name="ShopMenu" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=73955093]
 script = ExtResource("9_vtaks")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/ShopMenu" unique_id=1217967230]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/ShopMenu" unique_id=1217967230]
 offset_left = 578.0
 offset_top = 470.0
 offset_right = 666.0
 offset_bottom = 535.0
 
-[node name="Title" type="Label" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=281036564]
+[node name="Title" type="Label" parent="SubViewportContainer/SubViewport/ShopMenu/VBoxContainer" unique_id=281036564]
 layout_mode = 2
 text = "Shop Menu
 "
 
-[node name="Close" type="Button" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=1426755996]
+[node name="Close" type="Button" parent="SubViewportContainer/SubViewport/ShopMenu/VBoxContainer" unique_id=1426755996]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/ShopMenu/VBoxContainer" unique_id=1145982994]
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/ShopMenu/VBoxContainer" unique_id=1145982994]
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="SubViewportContainer/ShopMenu/VBoxContainer/ScrollContainer" unique_id=7087674]
+[node name="ItemList" type="ItemList" parent="SubViewportContainer/SubViewport/ShopMenu/VBoxContainer/ScrollContainer" unique_id=7087674]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=520134413]
+[node name="TV" type="Sprite2D" parent="." unique_id=520134413]
 texture_filter = 6
+position = Vector2(26, 10)
 texture = ExtResource("6_p57ef")
 centered = false

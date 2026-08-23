@@ -3,7 +3,6 @@ extends StaticBody2D
 var player_in_range: bool = false
 var player_ref: Node2D = null
 
-const SHOP_SCENE: PackedScene = preload("res://scripts/shop_menu.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,13 +25,13 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	
-	if get_tree().root.has_node("ShopMenu"):
+	if !get_tree().root.has_node("ShopMenu"):
 		return
 		
 	var shop_node = get_tree().root.find_child("ShopMenu", true, false)
 	
-	if shop_node and shop_node.has_method("setup_shop"):
-		shop_node.visible = true
-		shop_node.setup_shop(player_ref)
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and player_in_range:
+			shop_node.visible = true
+			shop_node.setup_shop(player_ref)
 		
 	
