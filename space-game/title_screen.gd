@@ -24,8 +24,12 @@ func _draw() -> void:
 	var title := "SPACE JANITOR"
 	var ts := 64
 	var tw := font.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, ts).x
-	draw_string(font, Vector2((vp.x - tw) / 2, vp.y * 0.38), title, HORIZONTAL_ALIGNMENT_LEFT, -1, ts, Color.WHITE)
-	draw_line(Vector2(vp.x/2 - tw/2, vp.y*0.4), Vector2(vp.x/2 + tw/2, vp.y*0.4), Color.WHITE, 2.0)
+	draw_string(font, Vector2(0, vp.y * 0.35), title, HORIZONTAL_ALIGNMENT_CENTER, vp.x, ts, Color.WHITE)
+	draw_line(Vector2(vp.x/2 - tw/2, vp.y*0.375), Vector2(vp.x/2 + tw/2, vp.y*0.375), Color.WHITE, 2.0)
+	var credits := "H. O. N. K"
+	ts = 32
+	tw = font.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, ts).x
+	draw_string(font, Vector2(0, vp.y * 0.425), credits, HORIZONTAL_ALIGNMENT_CENTER, vp.x, ts, Color.WHITE)
 
 	if _show:
 		var p := "PRESS ENTER TO START"

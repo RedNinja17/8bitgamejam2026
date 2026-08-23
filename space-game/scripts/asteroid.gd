@@ -17,7 +17,7 @@ func _ready() -> void:
 		body_entered.connect(_on_body_entered)
 	if not body_exited.is_connected(_on_body_exited):
 		body_exited.connect(_on_body_exited)
-
+	rotation = randf_range(0, TAU)
 	match type:
 		1:
 			sprite.play("1")
